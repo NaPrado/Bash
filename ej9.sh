@@ -7,14 +7,15 @@ then
 	exit 1
 elif [ ! -d $1 ]
 then
-	echo "Eror: %1 debe ser un directorio"
+	echo "Eror: $1 debe ser un directorio"
 	exit 2
 else
-	nombre=$1-`date '+%Y-%m-%d'`.tar.gz
+	nombre="$1 `date '+%Y-%m-%d'`.tar.gz"
+	dir=$1
 	if [ -e "$nombre" ]
 	then
 		echo "El archivo destino ($nombre) existe"
 		exit 3
 	fi
 fi
-tar -cvzf "$nombre" "#$1"
+tar -cvzf "$nombre" "$dir"
